@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Flex, useColorModeValue } from "@chakra-ui/react";
+import TypingAnimation from "@/components/typing-animation";
 import Message from "../message";
 import videoBg from "@/static/home/video.mp4";
 import mask from "@/static/home/mask.jpg";
@@ -25,9 +26,24 @@ function VideoBg() {
           className="mask"
         />
 
-        <Box zIndex={3} width="100%" height="50vh">
-          <Message message="Tobee Website" />
-        </Box>
+        <Flex
+          zIndex={3}
+          width="100%"
+          align="center"
+          justify="center"
+          flexWrap="wrap"
+        >
+          <TypingAnimation
+            strings={[
+              "Some <i>strings</i> are slanted",
+              "Some <strong>strings</strong> are bold",
+              "HTML characters &times; &copy;",
+            ]}
+          />
+          <Box zIndex={3} width="100%" height="30vh">
+            <Message message="Tobee's Website" />
+          </Box>
+        </Flex>
         {/* <Box as="h2" color={useColorModeValue("white", "gray.300")}>
           Tobee Website
         </Box> */}
