@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Flex, useColorModeValue } from "@chakra-ui/react";
 import TypingAnimation from "@/components/typing-animation";
 import Message from "../message";
-import videoBg from "@/static/home/video.mp4";
+import video from "@/static/home/video.mp4";
 import mask from "@/static/home/mask.jpg";
 import "./index.less";
 
@@ -16,7 +16,7 @@ function VideoBg() {
         bg={useColorModeValue("white", "gray.800")}
         color={useColorModeValue("gray.600", "white")}
       >
-        <video src={videoBg} autoPlay loop muted></video>
+        <video src={video} autoPlay loop muted></video>
         <Box
           as="img"
           filter={useColorModeValue("invert(0.2)", "invert(0.8)")}

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Nav from "@/components/layout/nav/index";
 import VideoBg from "./components/videoBg";
+import Glassmorphism from "./components/glassmorphism";
 import Cube from "./components/cube";
 function Home() {
   return (
     <>
       <Nav />
       <VideoBg />
+      <Glassmorphism />
       <section style={{ width: "100%", height: "50vh" }}>
         <Cube />
       </section>
