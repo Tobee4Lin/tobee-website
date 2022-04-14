@@ -24,6 +24,7 @@ import {
   MoonIcon,
   SunIcon,
 } from "@chakra-ui/icons";
+import { useNavigate, Link as ReactRouterLink } from "react-router-dom";
 
 export default function Nav() {
   const { isOpen, onToggle } = useDisclosure();
@@ -145,7 +146,8 @@ const DesktopNav = () => {
   );
 };
 
-const DesktopSubNav = ({ label, subLabel }: NavItem) => {
+const DesktopSubNav = ({ label, subLabel, url }: NavItem) => {
+  const navigate = useNavigate();
   return (
     <Link
       role={"group"}
@@ -153,6 +155,8 @@ const DesktopSubNav = ({ label, subLabel }: NavItem) => {
       p={2}
       rounded={"md"}
       _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+      as={ReactRouterLink}
+      to={url}
     >
       <Stack direction={"row"} align={"center"}>
         <Box>
@@ -184,33 +188,40 @@ const DesktopSubNav = ({ label, subLabel }: NavItem) => {
 interface NavItem {
   label: string;
   subLabel?: string;
+  url: string;
   children?: Array<NavItem>;
 }
 
 const NAV_ITEMS: Array<NavItem> = [
   {
     label: "测试标题1",
+    url: "/effect",
     children: [
       {
         label: "测试标题1 - 1",
-        subLabel: "something",
+        subLabel: "zustand",
+        url: "/effect",
       },
       {
         label: "测试标题1 - 2",
         subLabel: "something",
+        url: "/effect",
       },
     ],
   },
   {
     label: "测试标题2",
+    url: "/effect",
     children: [
       {
         label: "测试标题2 - 1",
         subLabel: "something",
+        url: "/effect",
       },
     ],
   },
   {
     label: "测试标题3",
+    url: "/effect",
   },
 ];

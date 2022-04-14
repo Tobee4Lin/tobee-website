@@ -6,7 +6,7 @@ import {
   // Environment,
   // ContactShadows,
 } from "@react-three/drei";
-import { Canvas, useLoader } from "@react-three/fiber";
+import { Canvas, useLoader, useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
 import "@/types/customTextGeometry.d.ts";
@@ -20,9 +20,18 @@ function Message({ message }: MyMessageProps) {
   //   ref.current?.geometry.center();
   // }, [message]);
 
-  setTimeout(() => {
-    ref.current?.geometry.center();
-  }, 150);
+  const Text = () => {
+    useFrame(({ clock }) => {
+      ref.current?.geometry.center();
+      // ref.current.rotation.y = Math.sin(clock.getElapsedTime());
+    });
+    return (
+      <mesh ref={ref}>
+        <customTextGeometry args={[message, config]} />
+        <meshStandardMaterial color="aqua" />
+      </mesh>
+    );
+  };
   return (
     <Canvas
       camera={{ position: [0, 0, 15], fov: 75, near: 0.1, far: 1000 }}
@@ -54,10 +63,11 @@ function Message({ message }: MyMessageProps) {
       >
         <ambientLight intensity={0.66} />
         <pointLight position={[10, 10, 10]} color="yellow" />
-        <mesh ref={ref}>
+        {/* <mesh ref={ref}>
           <customTextGeometry args={[message, config]} />
           <meshStandardMaterial color="aqua" />
-        </mesh>
+        </mesh> */}
+        <Text />
         {/* <ContactShadows
           frames={30}
           position={[0, -5, 0]}

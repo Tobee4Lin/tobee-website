@@ -1,16 +1,23 @@
-import React, { Suspense } from 'react';
+import React, { Suspense } from "react";
 import { Loader } from "@react-three/drei";
-import './App.css';
-import Home from './pages/home';
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import Nav from "@/components/layout/nav/index";
+import routes from "@/routes";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <Suspense fallback={<Loader />}>
-        <Home />
+        <Nav />
+        <Routes>
+          {routes.map((r) => (
+            <Route path={r.path} key={r.path} element={<r.element />} />
+          ))}
+        </Routes>
       </Suspense>
     </div>
   );
-}
+};
 
 export default App;
