@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useFBX } from "@react-three/drei";
-import Exhibition from "./src/Exhibition";
+// import Exhibition from "./src/Exhibition";
 function Model() {
   const FbxObj = () => {
     const fbx = useFBX("/model/Offensive-Idle.fbx");
@@ -11,7 +11,7 @@ function Model() {
     <Canvas>
       <OrbitControls />
       <ambientLight intensity={0.5}></ambientLight>
-      <Exhibition />
+      {/* <Exhibition /> */}
       {/* <FbxObj /> */}
     </Canvas>
   );

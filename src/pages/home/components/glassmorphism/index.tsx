@@ -44,7 +44,7 @@ function Glassmorphism() {
             >
               <Box className="content">
                 <Box as="h2" color={lineColor}>
-                  0{index}
+                  0{index + 1}
                 </Box>
                 <Flex
                   padding="5"
@@ -53,7 +53,7 @@ function Glassmorphism() {
                   justify="center"
                 >
                   <Box as="h3" color={line1Color}>
-                    Card - {index}
+                    Card - {index + 1}
                   </Box>
                   <Box as="p" color={line1Color}>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
