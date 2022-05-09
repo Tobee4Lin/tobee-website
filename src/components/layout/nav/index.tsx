@@ -194,18 +194,18 @@ interface NavItem {
 
 const NAV_ITEMS: Array<NavItem> = [
   {
-    label: "测试标题1",
+    label: "酷炫示例",
     url: "/effect",
     children: [
       {
-        label: "测试标题1 - 1",
+        label: "小熊",
         subLabel: "zustand",
         url: "/effect",
       },
       {
-        label: "测试标题1 - 2",
-        subLabel: "something",
-        url: "/effect",
+        label: "保时捷911",
+        subLabel: "Porsche 911",
+        url: "/car",
       },
     ],
   },

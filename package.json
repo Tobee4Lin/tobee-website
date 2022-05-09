@@ -11,7 +11,7 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@react-spring/three": "^9.4.3",
     "@react-spring/web": "^9.4.3",
-    "@react-three/drei": "^8.10.6",
+    "@react-three/drei": "^8.16.0",
     "@react-three/fiber": "^7.0.26",
     "@react-three/postprocessing": "^2.3.2",
     "@svgr/webpack": "^5.5.0",
@@ -46,6 +46,7 @@
     "jest": "^27.4.3",
     "jest-resolve": "^27.4.2",
     "jest-watch-typeahead": "^1.0.0",
+    "lamina": "^1.0.6",
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
     "leva": "^0.9.23",
@@ -164,7 +165,7 @@
     ]
   },
   "devDependencies": {
-    "prettier": "^2.5.1",
-    "husky": "^7.0.0"
+    "husky": "^7.0.0",
+    "prettier": "^2.5.1"
   }
 }
