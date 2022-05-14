@@ -16,7 +16,7 @@ import {
 
 function Porsche(props) {
   const { scene, nodes, materials } = useGLTF(
-    "/model/Porsche/scene-processed.glb"
+    "/model/Porsche/911-transformed.glb"
   );
   useMemo(() => {
     Object.values(nodes).forEach(
