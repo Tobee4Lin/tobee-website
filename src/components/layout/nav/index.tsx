@@ -207,6 +207,11 @@ const NAV_ITEMS: Array<NavItem> = [
         subLabel: "Porsche 911",
         url: "/car",
       },
+      {
+        label: "光环车",
+        subLabel: "Shining Ring Car",
+        url: "/shining-ring-car",
+      },
     ],
   },
   {

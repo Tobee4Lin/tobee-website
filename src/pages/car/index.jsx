@@ -13,6 +13,9 @@ import {
   Loader,
 } from "@react-three/drei";
 // import { LayerMaterial, Depth } from "lamina";
+import { Image } from "@chakra-ui/react";
+import carPic from "./assets/images/car.png";
+import "./index.less";
 
 function Porsche(props) {
   const { scene, nodes, materials } = useGLTF(
@@ -83,6 +86,16 @@ function MovingSpots({ positions = [2, 0, 2, 0, 2, 0, 2, 0] }) {
     </group>
   );
 }
+
+const IntroInfo = () => {
+  return (
+    <>
+      <Image objectFit="cover" src={carPic} alt="car" />
+      {/* <img src={carPic} alt="" /> */}
+      <div className="text">Porsche 911</div>
+    </>
+  );
+};
 
 export default function Car() {
   return (
@@ -178,6 +191,7 @@ export default function Car() {
         <BakeShadows />
         <CameraRig />
       </Canvas>
+      <IntroInfo></IntroInfo>
     </Suspense>
   );
 }
