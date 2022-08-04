@@ -136,7 +136,7 @@ const Reflect = () => {
       <Box as="section" overflow="hidden" width="100%" height="100vh">
         <Canvas
           //   concurrent
-          gl={{ alpha: true }}
+          gl={{ alpha: false }}
           dpr={[1, 1.5]}
           camera={{ position: [0, 3, 10], fov: 15 }}
         >

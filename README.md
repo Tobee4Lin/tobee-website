@@ -1,5 +1,5 @@
 <div align="center">
-    < img width="200px" height="200px" src="https://gitee.com/dishait/tov-template/raw/main/public/logo.png" />
+    <img width="200px" height="200px" src="https://gitee.com/dishait/tov-template/raw/main/public/logo.png" />
     <h1>tobee-website</h1>
     <h4>choice629的个人站</h4>
 </div>
