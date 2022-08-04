@@ -58,13 +58,38 @@ export default function Nav() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Text
+          {/* <Text
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
             fontFamily={"heading"}
             color={useColorModeValue("gray.800", "white")}
           >
             Logo
-          </Text>
+          </Text> */}
+
+          <Link
+            // p={2}
+            rounded={"md"}
+            _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+            as={ReactRouterLink}
+            to={"/"}
+          >
+            <Text
+              textAlign={useBreakpointValue({ base: "center", md: "left" })}
+              fontFamily={"heading"}
+              color={useColorModeValue("gray.800", "white")}
+            >
+              home
+            </Text>
+          </Link>
+          {/* <ReactRouterLink to="/">
+            <Text
+              textAlign={useBreakpointValue({ base: "center", md: "left" })}
+              fontFamily={"heading"}
+              color={useColorModeValue("gray.800", "white")}
+            >
+              home
+            </Text>
+          </ReactRouterLink> */}
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
@@ -209,8 +234,13 @@ const NAV_ITEMS: Array<NavItem> = [
       },
       {
         label: "光环车",
-        subLabel: "Shining Ring Car",
+        subLabel: "ShiningCar",
         url: "/shining-ring-car",
+      },
+      {
+        label: "倒影",
+        subLabel: "Reflect",
+        url: "/reflect",
       },
     ],
   },

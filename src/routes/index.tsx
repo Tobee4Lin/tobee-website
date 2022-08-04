@@ -3,6 +3,7 @@ import Home from "@/pages/home";
 import Effect from "@/pages/effect";
 import Car from "@/pages/car";
 import ShiningRingCar from "@/pages/shiningRingCar";
+import Reflect from "@/pages/reflect";
 
 const routes = [
   {
@@ -20,6 +21,10 @@ const routes = [
   {
     path: "/shining-ring-car",
     element: ShiningRingCar,
+  },
+  {
+    path: "/reflect",
+    element: Reflect,
   },
 ];
 

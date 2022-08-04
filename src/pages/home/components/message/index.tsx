@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useMemo, useRef } from "react";
+import React, { useState, useMemo, useRef } from "react";
 import {
   // OrbitControls,
   PresentationControls,
@@ -9,6 +9,7 @@ import {
 import { Canvas, useLoader, useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
+import { Vector3 } from "three";
 import "@/types/customTextGeometry.d.ts";
 
 function Message({ message }: MyMessageProps) {
@@ -19,6 +20,14 @@ function Message({ message }: MyMessageProps) {
   // useLayoutEffect(() => {
   //   ref.current?.geometry.center();
   // }, [message]);
+
+  const Intro = () => {
+    const [vec] = useState(() => new Vector3());
+    return useFrame((state) => {
+      state.camera.position.lerp(vec.set(state.mouse.x * 1.5, 3 + 0, 16), 0.05);
+      state.camera.lookAt(0, 2, 0);
+    });
+  };
 
   const Text = () => {
     useFrame(({ clock }) => {
@@ -38,44 +47,10 @@ function Message({ message }: MyMessageProps) {
       dpr={[1, 2]}
       flat
     >
-      {/* <OrbitControls
-        maxAzimuthAngle={Math.PI * (10 / 180)}
-        minAzimuthAngle={-Math.PI * (10 / 180)}
-        maxPolarAngle={Math.PI / 2}
-        minPolarAngle={Math.PI / 3}
-        maxDistance={25}
-        minDistance={20}
-      />
       <ambientLight intensity={0.66} />
       <pointLight position={[10, 10, 10]} color="yellow" />
-      <mesh ref={ref}>
-        <customTextGeometry args={[message, config]} />
-        <meshStandardMaterial color="aqua" />
-      </mesh> */}
-      {/* <Environment preset="apartment" background /> */}
-
-      <PresentationControls
-        global
-        zoom={0.8}
-        // rotation={[0, -Math.PI / 4, 0]}
-        polar={[0, -Math.PI / 4]}
-        azimuth={[-Math.PI / 30, Math.PI / 30]}
-      >
-        <ambientLight intensity={0.66} />
-        <pointLight position={[10, 10, 10]} color="yellow" />
-        {/* <mesh ref={ref}>
-          <customTextGeometry args={[message, config]} />
-          <meshStandardMaterial color="aqua" />
-        </mesh> */}
-        <Text />
-        {/* <ContactShadows
-          frames={30}
-          position={[0, -5, 0]}
-          scale={50}
-          blur={10}
-          far={20}
-        /> */}
-      </PresentationControls>
+      <Text />
+      <Intro />
     </Canvas>
   );
 }
