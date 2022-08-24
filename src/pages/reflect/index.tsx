@@ -53,8 +53,8 @@ const VideoText = ({ clicked, ...props }) => {
 
 const Ground = () => {
   const [floor, normal] = useLoader(TextureLoader, [
-    "texture/reflect/SurfaceImperfections003_1K_var1.jpg",
-    "texture/reflect/SurfaceImperfections003_1K_Normal.jpg",
+    "/texture/reflect/SurfaceImperfections003_1K_var1.jpg",
+    "/texture/reflect/SurfaceImperfections003_1K_Normal.jpg",
   ]);
   return (
     // <Reflector
