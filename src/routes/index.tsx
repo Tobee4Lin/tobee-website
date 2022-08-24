@@ -1,31 +1,40 @@
-import React from "react";
+// import { lazy } from "react";
+import { useRoutes } from "react-router-dom";
+import type { RouteObject } from "./interface";
 import Home from "@/pages/home";
-import Effect from "@/pages/effect";
-import Car from "@/pages/car";
-import ShiningRingCar from "@/pages/shiningRingCar";
-import Reflect from "@/pages/reflect";
+// import Blog from "@/pages/blog";
+// import Page404 from "@/components/ErrorMessage/404";
 
-const routes = [
+// 导入所有router
+const metaRouters = require.context("./modules/", false, /\.tsx$/);
+const routerArray: RouteObject[] = [];
+// const metaRouters = import.meta.webpackContext("./modules", {
+//   recursive: false,
+//   regExp: /\.tsx$/,
+// });
+// 处理路由
+metaRouters.keys().forEach((key) => {
+  routerArray.push(metaRouters(key)?.default?.[0]);
+});
+export const routes: RouteObject[] = [
   {
+    label: "首页",
     path: "/",
-    element: Home,
+    element: <Home />,
   },
-  {
-    path: "/effect",
-    element: Effect,
-  },
-  {
-    path: "/car",
-    element: Car,
-  },
-  {
-    path: "/shining-ring-car",
-    element: ShiningRingCar,
-  },
-  {
-    path: "/reflect",
-    element: Reflect,
-  },
+  ...routerArray,
+  // {
+  //   label: "博客",
+  //   path: "/blog",
+  //   element: <Blog />,
+  // },
+  // {
+  //   path: "*",
+  //   // element: lazy(() => import("@/components/ErrorMessage/404")),
+  //   element: <Page404 />,
+  // },
 ];
-
-export default routes;
+export const Router = () => {
+  const rootRoutes = useRoutes(routes);
+  return rootRoutes;
+};

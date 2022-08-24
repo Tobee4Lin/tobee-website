@@ -7,7 +7,7 @@ const FloatingGrid = () => {
   // const diffUse = useTexture("/texture/shiningCar/grid-texture.png");
   const diffUse = useLoader(
     TextureLoader,
-    process.env.PUBLIC_URL + "/texture/shiningCar/grid-texture.png"
+    "/texture/shiningCar/grid-texture.png"
   );
 
   useEffect(() => {

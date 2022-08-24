@@ -3,12 +3,12 @@ import React, { useRef, useState } from "react";
 import { Plane, useAspect, useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 // import Fireflies from "../fireflies";
-import bgUrl from "@/static/effect/bg.jpg";
-import starsUrl from "@/static/effect/stars.png";
-import groundUrl from "@/static/effect/ground.png";
-import bearUrl from "@/static/effect/bear.png";
-import leaves1Url from "@/static/effect/leaves1.png";
-import leaves2Url from "@/static/effect/leaves2.png";
+import bgUrl from "@/static/effect/effect/bg.jpg";
+import starsUrl from "@/static/effect/effect/stars.png";
+import groundUrl from "@/static/effect/effect/ground.png";
+import bearUrl from "@/static/effect/effect/bear.png";
+import leaves1Url from "@/static/effect/effect/leaves1.png";
+import leaves2Url from "@/static/effect/effect/leaves2.png";
 import "../../materials/layerMaterial";
 
 export default function Scene({ dof }) {

@@ -25,6 +25,8 @@ import {
   SunIcon,
 } from "@chakra-ui/icons";
 import { useNavigate, Link as ReactRouterLink } from "react-router-dom";
+import { routes } from "@/routes/index";
+import type { RouteObject } from "@/routes/interface";
 
 export default function Nav() {
   const { isOpen, onToggle } = useDisclosure();
@@ -58,16 +60,7 @@ export default function Nav() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          {/* <Text
-            textAlign={useBreakpointValue({ base: "center", md: "left" })}
-            fontFamily={"heading"}
-            color={useColorModeValue("gray.800", "white")}
-          >
-            Logo
-          </Text> */}
-
-          <Link
-            // p={2}
+          {/* <Link
             rounded={"md"}
             _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
             as={ReactRouterLink}
@@ -80,18 +73,9 @@ export default function Nav() {
             >
               home
             </Text>
-          </Link>
-          {/* <ReactRouterLink to="/">
-            <Text
-              textAlign={useBreakpointValue({ base: "center", md: "left" })}
-              fontFamily={"heading"}
-              color={useColorModeValue("gray.800", "white")}
-            >
-              home
-            </Text>
-          </ReactRouterLink> */}
+          </Link> */}
 
-          <Flex display={{ base: "none", md: "flex" }} ml={10}>
+          <Flex display={{ base: "none", md: "flex" }}>
             <DesktopNav />
           </Flex>
         </Flex>
@@ -127,25 +111,29 @@ const DesktopNav = () => {
   const linkColor = useColorModeValue("gray.600", "gray.200");
   const linkHoverColor = useColorModeValue("gray.800", "white");
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
-
+  const linkProps = {
+    p: 2,
+    fontSize: "sm",
+    fontWeight: 500,
+    color: linkColor,
+    _hover: {
+      textDecoration: "none",
+      color: linkHoverColor,
+    },
+  };
   return (
     <Stack direction={"row"} spacing={4}>
-      {NAV_ITEMS.map((navItem) => (
-        <Box key={navItem.label}>
+      {routes.map((navItem) => (
+        <Box key={navItem.label || navItem.path}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
-              <Link
-                p={2}
-                fontSize={"sm"}
-                fontWeight={500}
-                color={linkColor}
-                _hover={{
-                  textDecoration: "none",
-                  color: linkHoverColor,
-                }}
-              >
-                {navItem.label}
-              </Link>
+              {navItem.children ? (
+                <Link {...linkProps}>{navItem.label}</Link>
+              ) : (
+                <Link as={ReactRouterLink} to={navItem.path} {...linkProps}>
+                  {navItem.label}
+                </Link>
+              )}
             </PopoverTrigger>
 
             {navItem.children && (
@@ -171,7 +159,7 @@ const DesktopNav = () => {
   );
 };
 
-const DesktopSubNav = ({ label, subLabel, url }: NavItem) => {
+const DesktopSubNav = ({ label, subLabel, path }: RouteObject) => {
   const navigate = useNavigate();
   return (
     <Link
@@ -181,7 +169,7 @@ const DesktopSubNav = ({ label, subLabel, url }: NavItem) => {
       rounded={"md"}
       _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
       as={ReactRouterLink}
-      to={url}
+      to={path}
     >
       <Stack direction={"row"} align={"center"}>
         <Box>
@@ -209,54 +197,3 @@ const DesktopSubNav = ({ label, subLabel, url }: NavItem) => {
     </Link>
   );
 };
-
-interface NavItem {
-  label: string;
-  subLabel?: string;
-  url: string;
-  children?: Array<NavItem>;
-}
-
-const NAV_ITEMS: Array<NavItem> = [
-  {
-    label: "酷炫示例",
-    url: "/effect",
-    children: [
-      {
-        label: "小熊",
-        subLabel: "zustand",
-        url: "/effect",
-      },
-      {
-        label: "保时捷911",
-        subLabel: "Porsche 911",
-        url: "/car",
-      },
-      {
-        label: "光环车",
-        subLabel: "ShiningCar",
-        url: "/shining-ring-car",
-      },
-      {
-        label: "倒影",
-        subLabel: "Reflect",
-        url: "/reflect",
-      },
-    ],
-  },
-  {
-    label: "测试标题2",
-    url: "/effect",
-    children: [
-      {
-        label: "测试标题2 - 1",
-        subLabel: "something",
-        url: "/effect",
-      },
-    ],
-  },
-  {
-    label: "测试标题3",
-    url: "/effect",
-  },
-];

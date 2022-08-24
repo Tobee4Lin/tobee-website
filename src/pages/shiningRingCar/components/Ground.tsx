@@ -4,13 +4,9 @@ import { useTexture, MeshReflectorMaterial } from "@react-three/drei";
 import { RepeatWrapping, LinearEncoding, Vector2, TextureLoader } from "three";
 
 const Ground = () => {
-  // const [roughness, normal] = useTexture([
-  //   "/texture/shiningCar/terrain-roughness.jpg",
-  //   "/texture/shiningCar/terrain-normal.jpg",
-  // ]);
   const [roughness, normal] = useLoader(TextureLoader, [
-    process.env.PUBLIC_URL + "texture/shiningCar/terrain-roughness.jpg",
-    process.env.PUBLIC_URL + "texture/shiningCar/terrain-normal.jpg",
+    "/texture/shiningCar/terrain-roughness.jpg",
+    "/texture/shiningCar/terrain-normal.jpg",
   ]);
 
   useEffect(() => {
