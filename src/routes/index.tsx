@@ -3,7 +3,7 @@ import { useRoutes } from "react-router-dom";
 import type { RouteObject } from "./interface";
 import Home from "@/pages/home";
 // import Blog from "@/pages/blog";
-// import Page404 from "@/components/ErrorMessage/404";
+import Page404 from "@/components/ErrorMessage/404";
 
 // 导入所有router
 const metaRouters = require.context("./modules/", false, /\.tsx$/);
@@ -28,11 +28,11 @@ export const routes: RouteObject[] = [
   //   path: "/blog",
   //   element: <Blog />,
   // },
-  // {
-  //   path: "*",
-  //   // element: lazy(() => import("@/components/ErrorMessage/404")),
-  //   element: <Page404 />,
-  // },
+  {
+    path: "*",
+    // element: lazy(() => import("@/components/ErrorMessage/404")),
+    element: <Page404 />,
+  },
 ];
 export const Router = () => {
   const rootRoutes = useRoutes(routes);
