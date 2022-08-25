@@ -1,4 +1,8 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  combineReducers,
+  type ReducersMapObject,
+} from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import {
   TypedUseSelectorHook,
@@ -8,20 +12,16 @@ import {
 import storage from "redux-persist/lib/storage";
 import reduxThunk from "redux-thunk";
 import reduxPromise from "redux-promise";
-import blog from "./modules/blog";
 
 // 导入所有state
 const moduleReducers = require.context("./modules/", false, /\.ts$/);
-const reducerObj: any = {};
+const reducerObj: ReducersMapObject = {};
 moduleReducers.keys().forEach((key) => {
   const _key: string = key.match(/(?<=.\/).*?(?=.ts)/)![0];
   reducerObj[_key] = moduleReducers(key).default;
 });
 // create reducer
-const reducer = combineReducers({
-  blog,
-});
-// const reducer = combineReducers(reducerObj);
+const reducer = combineReducers(reducerObj);
 // redux 持久化配置
 const persistConfig = {
   key: "redux-state",

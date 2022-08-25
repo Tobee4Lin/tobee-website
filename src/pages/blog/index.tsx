@@ -19,7 +19,7 @@ const Blog = () => {
       >
         更新博客
       </Button>
-      {blogList.map((item) => {
+      {blogList.map((item: any) => {
         return <div key={item.id}>{item.title}</div>;
       })}
     </Box>

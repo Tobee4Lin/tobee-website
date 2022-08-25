@@ -14,7 +14,7 @@ const blogSlice = createSlice({
   name: "blog",
   initialState: blogState,
   reducers: {
-    setBlogList(state: BlogState, { payload }: PayloadAction<any[]>) {
+    setBlogList(state: BlogState, { payload }: PayloadAction<BlogState[]>) {
       state.blogList = payload;
     },
   },
