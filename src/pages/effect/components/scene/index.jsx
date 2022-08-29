@@ -1,6 +1,7 @@
 import * as THREE from "three";
-import React, { useRef, useState } from "react";
+import { useRef } from "react";
 import { Plane, useAspect, useTexture } from "@react-three/drei";
+import { useConst } from "@chakra-ui/react";
 import { useFrame } from "@react-three/fiber";
 // import Fireflies from "../fireflies";
 import bgUrl from "@/static/effect/effect/bg.jpg";
@@ -26,9 +27,9 @@ export default function Scene({ dof }) {
   const subject = useRef(null);
   const group = useRef(null);
   const layersRef = useRef([]);
-  const [movementVector] = useState(() => new THREE.Vector3());
-  const [tempVector] = useState(() => new THREE.Vector3());
-  const [focusVector] = useState(() => new THREE.Vector3());
+  const movementVector = useConst(() => new THREE.Vector3());
+  const tempVector = useConst(() => new THREE.Vector3());
+  const focusVector = useConst(() => new THREE.Vector3());
   const layers = [
     { texture: textures[0], z: 0, factor: 0.005, scale: scaleW },
     { texture: textures[1], z: 10, factor: 0.005, scale: scaleW },

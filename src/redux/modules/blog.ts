@@ -1,5 +1,5 @@
 import { BlogState } from "@/redux/interface";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, type Slice } from "@reduxjs/toolkit";
 
 const blogState: BlogState = {
   blogList: [
@@ -10,7 +10,7 @@ const blogState: BlogState = {
   ],
 };
 
-const blogSlice = createSlice({
+const blogSlice: Slice = createSlice({
   name: "blog",
   initialState: blogState,
   reducers: {

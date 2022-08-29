@@ -1,3 +1,4 @@
+import { useState, useEffect, useCallback } from "react";
 import {
   Box,
   Flex,
@@ -15,6 +16,7 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
+  SlideFade,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -31,9 +33,34 @@ import type { RouteObject } from "@/routes/interface";
 export default function Nav() {
   const { isOpen, onToggle } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
+  const [menuShow, setMenuShow] = useState(true);
+
+  const handleMouseWheel = useCallback((event: any): void => {
+    if (event.wheelDelta) {
+      // wheelDelta 判断鼠标滚动滚动条的反向（正数向上，负数向下）
+      // 还有一个detail 也是判断鼠标滚动滚动条的反向的，不过正数表向下 负数表向上
+      if (event.wheelDelta > 0) {
+        //判断浏览器IE，谷歌滑轮事件
+        if (document.documentElement.scrollTop > 0) {
+          setMenuShow(true);
+        }
+      } else {
+        setMenuShow(false);
+      }
+    }
+  }, []);
+  useEffect(() => {
+    window.addEventListener("mousewheel", handleMouseWheel, false);
+    return () => window.removeEventListener("mousewheel", handleMouseWheel);
+  }, []);
 
   return (
-    <Box sx={{ position: "sticky", top: "0", zIndex: 1000 }}>
+    // <SlideFade in={!isOpen} offsetY="20px">
+    <Box
+      sx={{ position: "sticky", top: "0", zIndex: 1000 }}
+      transition={"transform 200ms ease-in-out;"}
+      transform={menuShow ? "none" : "translate3d(0,calc(-100% - 2px),0);"}
+    >
       <Flex
         bg={useColorModeValue("white", "gray.800")}
         color={useColorModeValue("gray.600", "white")}
@@ -60,21 +87,6 @@ export default function Nav() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          {/* <Link
-            rounded={"md"}
-            _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
-            as={ReactRouterLink}
-            to={"/"}
-          >
-            <Text
-              textAlign={useBreakpointValue({ base: "center", md: "left" })}
-              fontFamily={"heading"}
-              color={useColorModeValue("gray.800", "white")}
-            >
-              home
-            </Text>
-          </Link> */}
-
           <Flex display={{ base: "none", md: "flex" }}>
             <DesktopNav />
           </Flex>
@@ -103,7 +115,12 @@ export default function Nav() {
           </Button>
         </Stack>
       </Flex>
+
+      <Collapse in={isOpen} animateOpacity>
+        <MobileNav />
+      </Collapse>
     </Box>
+    // </SlideFade>
   );
 }
 
@@ -195,5 +212,77 @@ const DesktopSubNav = ({ label, subLabel, path }: RouteObject) => {
         </Flex>
       </Stack>
     </Link>
+  );
+};
+
+const MobileNav = () => {
+  return (
+    <Stack
+      bg={useColorModeValue("white", "gray.800")}
+      p={4}
+      display={{ md: "none" }}
+    >
+      {routes.map((navItem) => (
+        <MobileNavItem key={navItem.path} {...navItem} />
+      ))}
+    </Stack>
+  );
+};
+
+const MobileNavItem = ({ label, children, subLabel, path }: RouteObject) => {
+  const { isOpen, onToggle } = useDisclosure();
+
+  return (
+    <Stack spacing={4} onClick={children && onToggle}>
+      <Flex
+        py={2}
+        justify={"space-between"}
+        align={"center"}
+        _hover={{
+          textDecoration: "none",
+        }}
+      >
+        <Link as={ReactRouterLink} to={path}>
+          <Text
+            fontWeight={600}
+            color={useColorModeValue("gray.600", "gray.200")}
+          >
+            {label}
+          </Text>
+        </Link>
+        {children && (
+          <Icon
+            as={ChevronDownIcon}
+            transition={"all .25s ease-in-out"}
+            transform={isOpen ? "rotate(180deg)" : ""}
+            w={6}
+            h={6}
+          />
+        )}
+      </Flex>
+
+      <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
+        <Stack
+          mt={2}
+          pl={4}
+          borderLeft={1}
+          borderStyle={"solid"}
+          borderColor={useColorModeValue("gray.200", "gray.700")}
+          align={"start"}
+        >
+          {children &&
+            children.map((child) => (
+              <Link
+                key={child.label}
+                py={2}
+                as={ReactRouterLink}
+                to={child.path}
+              >
+                {child.label}
+              </Link>
+            ))}
+        </Stack>
+      </Collapse>
+    </Stack>
   );
 };

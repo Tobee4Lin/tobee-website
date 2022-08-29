@@ -1,15 +1,10 @@
-import React, { useState, useMemo, useRef } from "react";
-import {
-  // OrbitControls,
-  PresentationControls,
-  // Html,
-  // Environment,
-  // ContactShadows,
-} from "@react-three/drei";
+import { useMemo, useRef } from "react";
+import { useConst } from "@chakra-ui/react";
 import { Canvas, useLoader, useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
 import { Vector3 } from "three";
+
 import "@/types/customTextGeometry.d.ts";
 
 function Message({ message }: MyMessageProps) {
@@ -22,7 +17,7 @@ function Message({ message }: MyMessageProps) {
   // }, [message]);
 
   const Intro = () => {
-    const [vec] = useState(() => new Vector3());
+    const vec = useConst(() => new Vector3());
     return useFrame((state) => {
       state.camera.position.lerp(vec.set(state.mouse.x * 1.5, 3 + 0, 16), 0.05);
       state.camera.lookAt(0, 2, 0);

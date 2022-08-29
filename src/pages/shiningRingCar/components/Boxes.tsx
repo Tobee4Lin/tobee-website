@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { useConst } from "@chakra-ui/react";
 import { useFrame } from "@react-three/fiber";
 import { Vector3 } from "three";
 
@@ -18,9 +19,9 @@ function Box({ color }: { color: any }) {
   const box = useRef<THREE.Mesh>(null!);
   const time = useRef(0);
   const [position, setPosition] = useState(getInitialPosition());
-  const [xRotSpeed] = useState(() => Math.random());
-  const [yRotSpeed] = useState(() => Math.random());
-  const [scale] = useState(() => Math.pow(Math.random(), 2.0) * 0.5 + 0.05);
+  const xRotSpeed = useConst(() => Math.random());
+  const yRotSpeed = useConst(() => Math.random());
+  const scale = useConst(() => Math.pow(Math.random(), 2.0) * 0.5 + 0.05);
 
   const resetPosition = () => {
     let v = new Vector3(
