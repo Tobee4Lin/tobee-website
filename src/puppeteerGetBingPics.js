@@ -20,7 +20,7 @@ const WRITE_FILE_PATH = "src/assets/json/picsUrlList.json";
     .catch(() => browser.close);
   //创建一个Page实例
   const page = await browser.newPage();
-  await page.keyboard.press("F12");
+  // await page.keyboard.press("F12");
 
   // 先读取原有文件内容，与新图片路径信息拼接后再写入文件
   const readAndwriteInfoToFile = (fileInfo) => {
