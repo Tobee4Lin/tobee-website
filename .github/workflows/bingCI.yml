@@ -1,0 +1,53 @@
+name: get bing pictures CI
+
+on:
+  #当位于main分支且push了src文件夹下js文件时，才会触发工作流程
+  push:
+    branches:
+      - "main"
+    paths:
+      - "src/**.js"
+  schedule:
+    - cron: "0 20 * * *" #国际标准时间，北京时间+8，即上午4点钟
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # 缓存安装的node modules 这里使用的是github action中关于node modules方式
+      - name: Cache node modules
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      # 安装node依赖
+      - name: Install Dependencies
+        run: npm install
+
+      # 执行具体脚本
+      - name: Run script
+        run: node src/puppeteerGetBingPics.js
+
+        # 将新的bing图片路径文件用git提交到仓库中
+      - name: Push snapshot
+        run: |
+          git config --global user.name 'Tobee4Lin'
+          git config --global user.email '1114656879@qq.com'
+          git add src/assets/json/
+          git commit -am "fetch new picture info"
+          git push
