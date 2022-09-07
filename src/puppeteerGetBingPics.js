@@ -16,6 +16,7 @@ const WRITE_FILE_PATH = "src/assets/json/picsUrlList.json";
       defaultViewport: null,
       args: ["--start-maximized"],
       ignoreDefaultArgs: ["--enable-automation"],
+      // devtools: true
     })
     .catch(() => browser.close);
   //创建一个Page实例
