@@ -1,12 +1,6 @@
 name: get bing pictures CI
 
 on:
-  #当位于main分支且push了src文件夹下js文件时，才会触发工作流程
-  push:
-    branches:
-      - "main"
-    paths:
-      - "src/**.js"
   schedule:
     - cron: "0 20 * * *" #国际标准时间，北京时间+8，即上午4点钟
 
@@ -16,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [14.x, 16.x]
 
     steps:
       - uses: actions/checkout@v3
