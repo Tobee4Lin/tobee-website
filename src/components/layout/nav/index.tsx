@@ -6,12 +6,16 @@ import {
   IconButton,
   Button,
   Stack,
+  HStack,
   Collapse,
   Icon,
   Link,
   Popover,
   PopoverTrigger,
   PopoverContent,
+  Wrap,
+  WrapItem,
+  Avatar,
   useColorMode,
   useColorModeValue,
   useBreakpointValue,
@@ -26,6 +30,7 @@ import {
   MoonIcon,
   SunIcon,
 } from "@chakra-ui/icons";
+import { AiFillGithub } from "react-icons/ai";
 import { useNavigate, Link as ReactRouterLink } from "react-router-dom";
 import { routes } from "@/routes/index";
 import type { RouteObject } from "@/routes/interface";
@@ -62,15 +67,19 @@ export default function Nav() {
       transform={menuShow ? "none" : "translate3d(0,calc(-100% - 2px),0);"}
     >
       <Flex
-        bg={useColorModeValue("white", "gray.800")}
+        bg={useColorModeValue("rgba(255,255,255,0.2)", "rgba(0,0,0,0.2)")}
         color={useColorModeValue("gray.600", "white")}
         minH={"60px"}
         py={{ base: 2 }}
         px={{ base: 4 }}
         borderBottom={1}
         borderStyle={"solid"}
-        borderColor={useColorModeValue("gray.200", "gray.900")}
+        borderColor={useColorModeValue(
+          "rgba(255,255,255,0.2)",
+          "rgba(0,0,0,0.2)"
+        )}
         align={"center"}
+        backdropFilter="saturate(180%) blur(5px)"
       >
         <Flex
           flex={{ base: 1, md: "auto" }}
@@ -92,28 +101,22 @@ export default function Nav() {
           </Flex>
         </Flex>
 
-        <Stack
-          flex={{ base: 1, md: 0 }}
-          justify={"flex-end"}
-          direction={"row"}
-          spacing={6}
-        >
+        <HStack spacing={6}>
           <Button onClick={toggleColorMode}>
             {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
           </Button>
-          <Button
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"white"}
-            bg={"pink.400"}
-            _hover={{
-              bg: "pink.300",
-            }}
+          <Link
+            style={{ display: "inline-flex" }}
+            href="https://github.com/Tobee4Lin/tobee-website"
           >
-            Sign Up
-          </Button>
-        </Stack>
+            <Icon
+              w={6}
+              h={6}
+              style={{ display: "inline-flex" }}
+              as={AiFillGithub}
+            />
+          </Link>
+        </HStack>
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>

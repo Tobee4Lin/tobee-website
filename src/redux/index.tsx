@@ -13,7 +13,7 @@ import storage from "redux-persist/lib/storage";
 import reduxThunk from "redux-thunk";
 import reduxPromise from "redux-promise";
 
-// 导入所有state
+// 导入所有Reducer
 const moduleReducers = require.context("./modules/", false, /\.ts$/);
 const reducerObj: ReducersMapObject = {};
 moduleReducers.keys().forEach((key) => {

@@ -16,12 +16,12 @@ const WRITE_FILE_PATH = "src/assets/json/picsUrlList.json";
       defaultViewport: null,
       args: ["--start-maximized"],
       ignoreDefaultArgs: ["--enable-automation"],
-      // devtools: true
+      // devtools: true, //打开开发者工具
     })
     .catch(() => browser.close);
   //创建一个Page实例
   const page = await browser.newPage();
-  // await page.keyboard.press("F12");
+  // await page.keyboard.press("F6");
 
   // 先读取原有文件内容，与新图片路径信息拼接后再写入文件
   const readAndwriteInfoToFile = (fileInfo) => {
@@ -45,6 +45,16 @@ const WRITE_FILE_PATH = "src/assets/json/picsUrlList.json";
       console.error("写入文件错误：", error);
     }
   };
+
+  // 新增请求拦截器，过滤掉一些无用的类型的请求，加快数据筛选速度
+  await page.setRequestInterception(true);
+  page.on("request", (request) => {
+    if (["image", "media"].includes(request.resourceType())) {
+      request.abort();
+    } else {
+      request.continue();
+    }
+  });
 
   //监听请求返回，获取图片相关接口的返回内容
   try {
@@ -74,7 +84,6 @@ const WRITE_FILE_PATH = "src/assets/json/picsUrlList.json";
       page.waitForTimeout(6000),
       getResponseData,
     ]);
-
     const responseContent = JSON.parse(response);
     //仅获取当天壁纸
     const currentDayImage = responseContent.MediaContents[0];

@@ -3,6 +3,7 @@ import { useRoutes } from "react-router-dom";
 import type { RouteObject } from "./interface";
 import Home from "@/pages/home";
 import Blog from "@/pages/blog";
+import BlogDetail from "@/pages/blog/detail";
 import Page404 from "@/components/ErrorMessage/404";
 
 // 导入所有router
@@ -27,6 +28,10 @@ export const routes: RouteObject[] = [
     label: "博客",
     path: "/blog",
     element: <Blog />,
+  },
+  {
+    path: "/blog/detail",
+    element: <BlogDetail />,
   },
   {
     path: "*",
