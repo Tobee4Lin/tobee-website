@@ -9,7 +9,7 @@ import { Box, Flex, VStack } from "@chakra-ui/react";
 export default function CodeBlock(props: any) {
   const themeValue = useColorModeValue(oneLight, a11yDark);
   return (
-    <Flex maxW="xxl">
+    <Flex maxW={["22rem", "md", "xl", "3xl"]}>
       <SyntaxHighlighter language="javascript" style={themeValue}>
         {props.children}
       </SyntaxHighlighter>
