@@ -10,7 +10,7 @@ import {
   useSelector as useReduxSelector,
 } from "react-redux";
 import storage from "redux-persist/lib/storage";
-import reduxThunk from "redux-thunk";
+// import reduxThunk from "redux-thunk";
 import reduxPromise from "redux-promise";
 
 // 导入所有Reducer
@@ -30,7 +30,8 @@ const persistConfig = {
 const persistReducerConfig = persistReducer(persistConfig, reducer);
 
 // redux middleWares
-const middleWares = [reduxThunk, reduxPromise];
+// const middleWares = [reduxThunk, reduxPromise];
+const middleWares = [reduxPromise];
 
 // store
 export const store = configureStore({
