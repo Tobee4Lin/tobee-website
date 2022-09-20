@@ -11,4 +11,6 @@ body {
   -webkit-touch-callout: none;
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
+  /* 解决IOS页面滑动卡顿 */
+  -webkit-overflow-scrolling: touch;
 }

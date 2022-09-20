@@ -6,20 +6,20 @@ import BlogContent from "./components/content";
 import TitleOfContent from "./components/title-of-content";
 import { type IHeading, titleTypeEnum } from "./types";
 
-// let headings: IHeading[] = [];
-
 const BlogDetail = () => {
   const [searchParams] = useSearchParams();
   const bg = useColorModeValue("white", "gray.800");
   const [blogContent, setBlogContent] = useState<string>("");
   const [headings, setHeadings] = useState<IHeading[]>([]);
   const staticUrl = searchParams.get("staticUrl") as string;
+  const [isContentLoaded, setIsContentLoaded] = useState(false);
 
   useEffect(() => {
     fetch(staticUrl)
       .then((res) => res.text())
       .then((text) => {
         setBlogContent(text);
+        setIsContentLoaded(true);
         try {
           const html = marked.parse(text);
           const reg = /<(h|H)[3-4].*?>.*?<\/(h|H)[3-4].*?>/g;
@@ -57,7 +57,9 @@ const BlogDetail = () => {
         <Flex>
           {/* 左侧主体内容 */}
           <Box minW="0" flex="auto" px={{ base: "4", sm: "6", xl: "8" }} pt="0">
-            <BlogContent>{blogContent}</BlogContent>
+            <BlogContent isContentLoaded={isContentLoaded}>
+              {blogContent}
+            </BlogContent>
           </Box>
           {/* 右侧标题导航内容 */}
           <TitleOfContent

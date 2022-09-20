@@ -46,7 +46,7 @@ export default function Nav() {
       // 还有一个detail 也是判断鼠标滚动滚动条的反向的，不过正数表向下 负数表向上
       if (event.wheelDelta > 0) {
         //判断浏览器IE，谷歌滑轮事件
-        if (document.documentElement.scrollTop > 0) {
+        if (document.documentElement.scrollTop >= 0) {
           setMenuShow(true);
         }
       } else {
