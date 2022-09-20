@@ -1,0 +1,28 @@
+.animation {
+    background-color: rebeccapurple;
+    color: #fff;
+    font: 1.2em Helvetica, arial, sans-serif;
+    width: 200px;
+    padding: 1em;
+    border-radius: 1em;
+    text-align: center;
+    animation: vibrate 0.3s linear infinite both;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .animation {
+        animation: none;
+    }
+}
+
+@keyframes vibrate {
+    from {
+        margin-left: 100%;
+        width: 300%;
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}

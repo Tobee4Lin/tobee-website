@@ -1,0 +1,55 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+
+<svg>
+<metadata>
+Created by webfont
+</metadata>
+<defs>
+
+<font id="Noto Sans S Chinese Thin" horiz-adv-x="1000" vert-adv-y="1000" >
+  <font-face
+    
+    font-family="Noto Sans S Chinese Thin"
+    
+    font-weight="100"
+    
+    font-stretch="normal"
+    
+    units-per-em="1000"
+    
+    panose-1="0 0 0 0 0 0 0 0 0 0"
+    
+    ascent="880"
+    
+    descent="-120"
+    
+    x-height="527"
+    
+    cap-height="726"
+    
+    bbox="-991 -1050 2930 1810"
+    
+    underline-thickness="50"
+    
+    underline-position="-100"
+    
+    unicode-range="U+0001-2CE93"
+    
+  />
+    <missing-glyph />
+    
+    <glyph glyph-name="cid48" unicode="&#x4f;" d="M357 22q57 0 104.5 24.5t81 69t52 108t18.5 141.5t-18.5 140.5t-52 107t-81 68t-104.5 23.5t-104.5 -23.5t-81 -68t-52 -107t-18.5 -140.5t18.5 -141.5t52 -108t81 -69t104.5 -24.5zM357 -13q-65 0 -119 27t-93 76.5t-61 119t-22 155.5t22 155t61 118t93 75t119 26
+q64 0 118.5 -26t93.5 -75t61 -118t22 -155t-22 -155.5t-61 -119t-93.5 -76.5t-118.5 -27z"  horiz-adv-x="714"   />
+
+    
+    <glyph glyph-name="cid49" unicode="&#x50;" d="M276 353q117 0 173 40.5t56 134.5q0 48 -14.5 79.5t-43.5 50.5t-72.5 27t-102.5 8h-125v-340h129zM110 726h175q62 0 110.5 -10.5t81.5 -34t50.5 -61.5t17.5 -92q0 -106 -66.5 -157t-189.5 -51h-142v-320h-37v726z"  horiz-adv-x="598"   />
+
+    
+    <glyph glyph-name="cid84" unicode="&#x73;" d="M229 -13q-60 0 -108.5 21.5t-83.5 50.5l23 29q33 -29 72.5 -48.5t98.5 -19.5q66 0 99.5 33t33.5 78q0 26 -12 45t-31 33.5t-42.5 25t-46.5 18.5q-30 11 -60.5 23t-54.5 29t-39.5 40.5t-15.5 57.5q0 27 10.5 52t31.5 44t52 30t72 11q39 0 78 -15t68 -39l-21 -27
+q-26 20 -56 34t-72 14q-33 0 -56.5 -8.5t-39 -23t-23 -33t-7.5 -37.5q0 -24 11 -40.5t29 -29.5t40.5 -22.5t46.5 -18.5q31 -12 62.5 -24t56.5 -29.5t40.5 -43t15.5 -64.5q0 -29 -11.5 -55.5t-33 -46.5t-53.5 -32t-74 -12z"  horiz-adv-x="441"   />
+
+    
+
+  </font>
+</defs></svg>
