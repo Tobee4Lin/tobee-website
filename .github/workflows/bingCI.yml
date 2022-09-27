@@ -31,7 +31,7 @@ jobs:
 
       # 安装node依赖
       - name: Install Dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       # 执行具体脚本
       - name: Run script
